@@ -1,25 +1,3 @@
-export interface TypeTrigger {
-  jsonrpc: string;
-  result: {
-      triggerid: string;
-      expression: string;
-      description: string;
-      priority: string;
-      lastchange: string;
-      status: string;
-      value: string;
-      comments: string;
-      type: string;
-      state: string;
-      hosts: {
-          hostid: string;
-          host: string;
-          name: string;
-          description: string;
-      }[];
-  }[]
-  id: number;
-}
 
 export const groups = [
   { groupid: 34, local: "AGUA BRANCA", id_g_ws: "558199626363-1589826430", hostid: 10642 },

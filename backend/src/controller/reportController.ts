@@ -1,12 +1,8 @@
-import { Request, Response } from "express";
+import { groups } from "../model/groupHost";
+import { Occurrence, Trigger } from "../types/report";
 
-import { TypeTrigger, groups } from "../model/groupHost";
-import { Occurrence, Trigger } from "../model/report";
-
-import { getTriggerWeekly } from "../utils/RequestTriggers";
-import converterTimestamp from "../utils/converterTimestamp";
-import TIMESTAMPNOW from "../utils/timestampNow";
-import { token } from "../utils/tokenAuth";
+import { getTriggerWeekly } from "../service/fetch/requestTriggers";
+import { converterTimestamp, TIMESTAMPNOW } from "../utils";
 
 import { client } from "./mainController";
 import { CONSTANTS } from "../config/server";
@@ -25,7 +21,7 @@ export async function reportTriggerWeekly() {
     groups.map(async (value, index) => {
       let configReport = `*RELATÓRIO SEMANAL ${value.local}* - ${dateSice} á ${dateTill} \n`
 
-      const response = await getTriggerWeekly({ groupId: value.groupid, lastChangeSince: timeLastSice, lastChangeTill: timeLastTill, token });
+      const response = await getTriggerWeekly({ groupId: value.groupid, lastChangeSince: timeLastSice, lastChangeTill: timeLastTill });
 
       response.result.forEach((item) => {
         const index = numberOfOccurrences.findIndex((obj) => obj.description === item.description);

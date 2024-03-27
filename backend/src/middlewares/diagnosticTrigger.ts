@@ -3,59 +3,73 @@ import { getGraphInfo } from "../controller/graphController";
 import { sendMensageTrigger } from "../controller/messageController";
 import { priorityIncidente } from "../model/incident";
 
-import { getNewTrigger } from "../utils/RequestTriggers";
-import converterTimestamp from "../utils/converterTimestamp";
-import TIMESTAMPNOW from "../utils/timestampNow";
+import { getNewTrigger } from "../service/fetch/requestTriggers";
+import { TriggerResponse } from "../types/trigger/TriggerResponse";
+import { converterTimestamp, TIMESTAMPNOW } from "../utils";
 
-async function threadNewMessage(auth: string) {
+type ParamsLoadDiagnostic = {
+  data: TriggerResponse, index: number, coment: string, host: string
+}
+
+type ParamsSendMessage = {
+  type: string, diagnostic: string, hostid: number
+}
+
+function loadDiagnostic({ coment, data, host, index }: ParamsLoadDiagnostic) {
+  const PARAMS = {
+    lastchange: data?.result?.[index]?.lastchange,
+    priority: data?.result?.[index]?.priority,
+    triggerid: data?.result?.[index]?.triggerid,
+    eventid: data?.result?.[index]?.lastEvent.eventid,
+    description: data?.result?.[index]?.description,
+  }
+
+  const timeIncidet = converterTimestamp(PARAMS.lastchange);
+  const priority = priorityIncidente(parseInt(PARAMS.priority));
+
+  const diagnostic = `Novo incidente encontrado: ${PARAMS.triggerid}`
+    + '\n' + `Descrição: *${PARAMS.description}*`
+    + '\n' + `Horario: ${timeIncidet}`
+    + '\n' + `Prioridade: ${priority}`
+    + '\n' + `Comentários: ${coment}`
+    + '\n' + `Host: *${host}*`
+    + '\n\n' + `http://sede.vidatel.com.br/tr_events.php?triggerid=${PARAMS.triggerid}&eventid=${PARAMS.eventid}`;
+
+  return diagnostic;
+}
+
+async function sendMessagemTrigger({ diagnostic, hostid, type }: ParamsSendMessage) {
+  if (type.toLowerCase() === "baixa voltagem" || type.toLowerCase() === "alta voltagem") {
+    await getGraphInfo({
+      hostId: hostid,
+      from: '1h',
+      message: diagnostic,
+      groupId: `${CONSTANTS.ID_WS_GROUP}`
+    });
+
+    console.log("Mensagem enviada ao whatsapp às: ", TIMESTAMPNOW());
+  }
+
+  else {
+    await sendMensageTrigger(`${CONSTANTS.ID_WS_GROUP}`, diagnostic);
+    
+    console.log("Mensagem enviada ao whatsapp às: ", TIMESTAMPNOW());
+  }
+}
+
+async function threadNewMessage() {
   const timestampNow = TIMESTAMPNOW();
 
-  const data = await getNewTrigger(timestampNow, auth);
+  const data = await getNewTrigger(timestampNow);
 
   const lengthTrigger = data.result?.length;
-  
+
   if (lengthTrigger > 0) {
     data.result?.map(async (value, index: number) => {
-      const PARAMS = {
-        lastchange: data?.result?.[index]?.lastchange,
-        priority: data?.result?.[index]?.priority,
-        triggerid: data?.result?.[index]?.triggerid,
-        eventid: data?.result?.[index]?.lastEvent.eventid,
-        description: data?.result?.[index]?.description,
-      }
-      
-      const timeIncidet = converterTimestamp(PARAMS.lastchange);
-      const priority = priorityIncidente(parseInt(PARAMS.priority));
+      const typeTrigger = data?.result?.[index]?.description;
+      const diagnostic = loadDiagnostic({ data, coment: value?.comments, host: value?.hosts?.[0]?.name, index });
 
-      const diagnosis = `Novo incidente encontrado: ${PARAMS.triggerid}`
-        + '\n' + `Descrição: *${PARAMS.description}*`
-        + '\n' + `Horario: ${timeIncidet}`
-        + '\n' + `Prioridade: ${priority}`
-        + '\n' + `Comentários: ${value?.comments}`
-        + '\n' + `Host: *${value?.hosts?.[0]?.name}*`
-        + '\n\n' + `http://sede.vidatel.com.br/tr_events.php?triggerid=${PARAMS.triggerid}&eventid=${PARAMS.eventid}`;
-
-      //const host: HostInfo = await getTagHost(parseInt(data?.result?.[index]?.hosts?.[0]?.hostid), auth);
-
-      if (PARAMS.description.toLowerCase() === "baixa voltagem" || PARAMS.description.toLowerCase() === "alta voltagem") {
-        await getGraphInfo({
-          hostId: parseInt(value?.hosts?.[0]?.hostid),
-          from: 'now-1h',
-          message: diagnosis,
-          //groupId: host?.result?.[0]?.tags[0]?.value
-          groupId: `${CONSTANTS.ID_WS_GROUP}`
-        });
-
-        console.log("Mensagem enviada ao whatsapp às: ", timestampNow);
-      }
-
-      else {
-        /*
-        host?.result?.[0]?.tags.length > 0 ? await sendMensageTrigger(`${host?.result?.[0]?.tags[0]?.value}@g.us`, diagnosis) : () => { };
-        */
-        await sendMensageTrigger(`${CONSTANTS.ID_WS_GROUP}`, diagnosis);
-        console.log("Mensagem enviada ao whatsapp às: ", timestampNow);
-      }
+      await sendMessagemTrigger({ diagnostic, hostid: Number(value?.hosts?.[0]?.hostid), type: typeTrigger })
     });
   }
 }

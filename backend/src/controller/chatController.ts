@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import { prisma } from "../database/prismaClient";
 import { NotFoundError } from "../model/api-errors";
-import { CreateChatRequest, UpdateChatRequest, createChatSchema, updateChatSchema } from "../model/chat";
+import { CreateChatRequest, UpdateChatRequest, createChatSchema, updateChatSchema } from "../model/chatSchema";
 
 const getAllChat = async (req: Request, res: Response) => {
   const { take, page } = req.body;

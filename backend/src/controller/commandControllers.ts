@@ -17,7 +17,8 @@ const commandGenerate = async (req: Request, res: Response) => {
   await prisma.command.createMany({
     data: [
       { command: "/help", description: 'Lista todos os comandos existentes' },
-      { command: "/graph", description: 'Envia um Grafico existente do Zabbix de acordo com o Host e Nome do Gráfico' },
+      { command: "/graph", description: 'Envia um Grafico existente do Zabbix de acordo com o Host e Nome do Gráfico e periodo solicitado' },
+      { command: "/now-graph", description: 'Periodos de tempos suportados para busca de gráficos: 5m, 15m, 30m, 1h, 1d, 3h, 6h, 12h, 24h, 7d' },
       { command: "/hostgroup", description: 'Mostra todos os grupos de Hosts Ativos' },
       { command: "/hosts", description: 'Mostra todos os hosts de um Grupo de Hosts' },
     ]

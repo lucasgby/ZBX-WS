@@ -1,0 +1,3 @@
+type TimeStamp = {
+  timeStamp: string
+}

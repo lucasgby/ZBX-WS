@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
+import { MessageMedia } from "whatsapp-web.js";
 
-import { getGraphHost, getGraphImage } from "../utils/RequestGraphImage";
+import { getGraphHost, getGraphImage } from "../service/fetch/requestGraphImage";
 
 import { client } from './mainController';
-import { MessageMedia } from "whatsapp-web.js";
 import { CONSTANTS } from "../config/server";
 import { BadRequestError, NotFoundError } from "../model/api-errors";
 
 type Params = {
   hostId: number;
-  from: 'now-5m' | 'now-15m' | 'now-30m' | 'now-1h' | 'now-1d' | 'now-3h' | 'now-6h' | 'now-12h';
+  from: '5m' | '15m' | '30m' | '1h' | '1d' | '3h' | '6h' | '12h' | '24h' | '7d';
   message: string;
   groupId: string
 }
@@ -22,7 +22,7 @@ async function sendGraph(graphid: number, from: string, message: string, name: s
 
   const media = new MessageMedia('image/png', base64String);
 
-  const link = `http://sede.vidatel.com.br/chart2.php?graphid=${graphid}&from=${from}&to=now&height=200&width=480`;
+  const link = `http://sede.vidatel.com.br/chart2.php?graphid=${graphid}&from=now-${from}&to=now&height=200&width=480`;
   const caption = `${name}: ${from} \n\n${link}`;
 
   Promise.all([
@@ -68,5 +68,6 @@ const graph = async (req: Request, res: Response) => {
 
 export {
   graph,
-  getGraphInfo
+  getGraphInfo,
+  sendGraph
 }

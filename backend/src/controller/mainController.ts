@@ -1,16 +1,19 @@
 import { Client, LocalAuth } from "whatsapp-web.js";
 import qrcode from "qrcode-terminal";
 
-import { CONSTANTS } from "../config/server";
+import { saveQRCode, deleteQRCode } from "../model/qrCodeOperations";
+import { botOptions, loadGraph } from "./botController";
 
-import { saveQRCode, deleteQRCode } from "../model/generate_qr";
-import { listCommandFormat } from "./commandControllers";
-import { hostGroupBtns } from "./botController";
+import { loadGroupHost } from "./hostController";
 
 const client = new Client({
   authStrategy: new LocalAuth({
-    dataPath: 'ws-session-zbx'
-  })
+    dataPath: 'ws-session-zbx',
+    clientId: 'user-zbx',
+  }),
+  puppeteer: {
+    channel: 'chrome'
+  }
 });
 
 client.once('ready', () => {
@@ -20,22 +23,25 @@ client.once('ready', () => {
 });
 
 client.on('message', async (msg) => {
-  const gpt = msg.body.includes('/gpt');
+  const isSolicidedGraph = msg.body.includes('/graph');
+  const isSolicidedHost = msg.body.includes('/hosts');
 
-  switch (msg.body) {
-    case '/help':
-      const message = 'Comandos disponíveis:' + '\n\n' + listCommandFormat();
-      client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, message)
-      break;
-    case '/graph':
-      //client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, 'funcionalidade em desenvolvimento');
-      const BTN = await hostGroupBtns();
-      
-      client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, BTN)
-      
-      //msg.reply(BTN.);
-      break;
+  if (isSolicidedGraph) {
+    const message = msg.body.split(' ');
+
+    await loadGraph(message[2], message[1], message[3]);
   }
+
+  if (isSolicidedHost) {
+    const message = msg.body.split(' ');
+
+    loadGroupHost(message[1]);
+  }
+
+  else {
+    botOptions(msg.body)
+  }
+
 });
 
 client.on('qr', (qr) => {

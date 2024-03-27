@@ -17,7 +17,7 @@ import { errorMiddleware } from "./middlewares/error";
 
 const app = express();
 
-diagnosticController();
+//diagnosticController();
 
 schedule.scheduleJob({ hour: 9, minute: 0, dayOfWeek: 6 }, async () => {
   await reportTriggerWeekly();
@@ -26,7 +26,7 @@ schedule.scheduleJob({ hour: 9, minute: 0, dayOfWeek: 6 }, async () => {
 app.use(cors({
     origin: "*",
     allowedHeaders: "*",
-    methods: ["GET", "PUT", "POST"]
+    methods: ["GET", "PUT", "POST", "DELETE"]
 }));
 
 app.use(bodyParser.json());
