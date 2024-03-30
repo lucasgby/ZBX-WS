@@ -4,16 +4,8 @@ import { sendMensageTrigger } from "../controller/messageController";
 import { priorityIncidente } from "../model/incident";
 
 import { getNewTrigger } from "../service/fetch/requestTriggers";
-import { TriggerResponse } from "../types/trigger/TriggerResponse";
+import { ParamsLoadDiagnostic, ParamsSendMessage } from "../types/theadNewMessage/ParamsThread";
 import { converterTimestamp, TIMESTAMPNOW } from "../utils";
-
-type ParamsLoadDiagnostic = {
-  data: TriggerResponse, index: number, coment: string, host: string
-}
-
-type ParamsSendMessage = {
-  type: string, diagnostic: string, hostid: number
-}
 
 function loadDiagnostic({ coment, data, host, index }: ParamsLoadDiagnostic) {
   const PARAMS = {

@@ -23,11 +23,12 @@ async function loadGraph(name: string, host: string, from?: string) {
   const data = await getGraph(name, host);
 
   if (data.result.length > 0) {
-    const message = `Gráfico Solicitado`;
+    const message = `Gráfico Encontrado`;
+    const description = `${host}: ${data.result[0].name}`
 
-    await sendGraph(Number(data.result[0].graphid), from ?? '1h', message, data.result[0].name);
+    await sendGraph(Number(data.result[0].graphid), from ?? '1h', message, description);
   } else {
-    client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, `*GRÁFICO NÃO ENCONTRADO*`);
+    client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, `*GRÁFICO NÃO ENCONTRADO*, Verifique se o Nome do Host ou ID, e o Nome do Gráfico ou Id estão corretos.`);
   }
 }
 
@@ -42,7 +43,7 @@ async function botOptions(message: string) {
     case '/hostgroup':
       const BTN = await hostGroupBtns();
 
-      client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, `*ESCOLHA UM GRUPO DE HOST PELO NUMERO:* \n\n ${BTN}`);
+      client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, `*GRUPO DE HOSTS DISPONÍVEIS:* \n\n ${BTN}`);
 
       break;
 

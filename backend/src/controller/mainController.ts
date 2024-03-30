@@ -24,7 +24,8 @@ client.once('ready', () => {
 
 client.on('message', async (msg) => {
   const isSolicidedGraph = msg.body.includes('/graph');
-  const isSolicidedHost = msg.body.includes('/hosts');
+  const isSolicidedHost = msg.body.includes('/hosts-in');
+  const isSolicidedGraphHost = msg.body.includes('/graph-host');
 
   if (isSolicidedGraph) {
     const message = msg.body.split(' ');
@@ -35,7 +36,13 @@ client.on('message', async (msg) => {
   if (isSolicidedHost) {
     const message = msg.body.split(' ');
 
-    loadGroupHost(message[1]);
+    await loadGroupHost(message[1]);
+  }
+
+  if (isSolicidedGraphHost) {
+    const message = msg.body.split(' ');
+
+    
   }
 
   else {

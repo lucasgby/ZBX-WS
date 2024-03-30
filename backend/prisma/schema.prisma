@@ -75,7 +75,7 @@ model Report {
 model Command {
   id Int @id @default(autoincrement())
 
-  description String @db.VarChar(50)
+  description String @db.VarChar(255)
   command     String @unique @db.VarChar(20)
 
   @@index([id], name: "idx_command_id")

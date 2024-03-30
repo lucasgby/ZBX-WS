@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.use(routes);
 app.use(errorMiddleware);
 
-client.initialize();
+//client.initialize();
 
 app.listen(CONSTANTS.PORT, () => {
   console.log(`Server  is running in: http://localhost:${CONSTANTS.PORT}`);
