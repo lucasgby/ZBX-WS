@@ -22,6 +22,12 @@ export async function reportTriggerWeekly() {
       let configReport = `*RELATÓRIO SEMANAL ${value.local}* - ${dateSice} á ${dateTill} \n`
 
       const response = await getTriggerWeekly({ groupId: value.groupid, lastChangeSince: timeLastSice, lastChangeTill: timeLastTill });
+      
+      if (response.result.length === 0) {
+        configReport = configReport + '\n\nNenhum incidente encontrado necessa nessa semana.';
+        
+        await client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, configReport);
+      }
 
       response.result.forEach((item) => {
         const index = numberOfOccurrences.findIndex((obj) => obj.description === item.description);

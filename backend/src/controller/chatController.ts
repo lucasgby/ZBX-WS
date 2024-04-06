@@ -13,7 +13,6 @@ const getAllChat = async (req: Request, res: Response) => {
   const data = await prisma.chat.findMany({
     take: takeFormat,
     select: {
-      _count: true,
       chat_id: true,
       id: true,
       server: true,
@@ -53,18 +52,19 @@ const addChat = async (req: Request, res: Response) => {
 }
 
 const updateChat = async (req: Request, res: Response) => {
-  const requestData: UpdateChatRequest = await updateChatSchema.validate(req.body, { abortEarly: false });
-
-  const { chat_id, chat_name, server, is_active } = requestData;
+  const { id } = req.params;
+  
+  const { chat_id, chat_name, server, is_active } = req.body;
 
   const chat = await prisma.chat.findUnique({
-    where: { chat_id }
+    where: { id: Number(id) }
   });
 
   if (chat) {
     await prisma.chat.update({
-      where: { id: chat.id },
+      where: { id: Number(id) },
       data: {
+        chat_id,
         chat_name,
         is_active,
         server

@@ -4,7 +4,7 @@ import { outputHost, selectGraphs, outputGroup, selectTags } from "../params";
 import { ParamsHostGetByGroupid, ParamsHostGetById, ParamsHostGetFilter } from "../HostTypes";
 
 const paramsHostGetSelectGraphs = ({ hostids }: ParamsHostGetById) => {
-  const params = { outputHost, "hostids": hostids, selectGraphs };
+  const params = { "output": outputHost, "hostids": hostids, selectGraphs };
   const request = createRequestObject({ method: 'host.get', params });
 
   return request;

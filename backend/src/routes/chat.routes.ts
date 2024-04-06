@@ -6,8 +6,8 @@ const chatRoutes = Router();
 chatRoutes.post('/chat/list', getAllChat);
 chatRoutes.post('/chat/add', addChat);
 
-chatRoutes.put('/chat/update', updateChat);
+chatRoutes.put('/chat/update/:id', updateChat);
 
-chatRoutes.delete('chat/delete/:id', deleteChat);
+chatRoutes.delete('/chat/delete/:id', deleteChat);
 
 export { chatRoutes };

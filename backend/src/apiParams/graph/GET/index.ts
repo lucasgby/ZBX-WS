@@ -25,7 +25,20 @@ const paramsGetGraphInFilter = ({ host, name }: ParamsGetGraphFilter) => {
   return request;
 }
 
+const paramsGetGraphById = (graphids: number) => {
+  const params = {
+    output,
+    "graphids": graphids
+  };
+
+  const request = createRequestObject({ method: 'graph.get', params });
+
+  return request;
+}
+
 export {
   paramsGetGraphHostByHostid,
-  paramsGetGraphInFilter
+  paramsGetGraphInFilter,
+
+  paramsGetGraphById
 };

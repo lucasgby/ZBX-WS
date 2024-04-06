@@ -3,20 +3,24 @@ import { getHostByGroupId, getHostFilter } from "../service/fetch/requestHost";
 import { client } from "./mainController";
 
 async function loadGroupHost(message: string | number) {
-  const data = typeof message === 'number' ? await getHostByGroupId({ id: message }) : await getHostFilter({ name: message }) 
+  const typeMessage = Number(message);
+
+  const data = !isNaN(typeMessage) ? await getHostByGroupId({ id: typeMessage }) : await getHostFilter({ name: String(message) });
 
   if (data) {
     const formatMessage: String[] = [];
 
     data.result.map((value) => {
-      formatMessage.push(`${value.hostid}: ${value.host}`)
+      formatMessage.push(`*${value.hostid}*: ${"`"}${value.host}${"`"}\n`)
     });
-  
-    const formartMsg = String(formatMessage).replace('/,/g', '');
-    client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, formartMsg);
+
+    const formartMsg = String(formatMessage).replace(/,/g, '');
+    client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, `*HOSTS DO GRUPO*\n\n${formartMsg}`);
   }
 
-  client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, "Host não encontrados, verifique se o nome do Grupo ou ID enviado estão corretos.");
+  else {
+    client.sendMessage(`${CONSTANTS.ID_WS_GROUP}`, "Host não encontrados, verifique se o nome do Grupo ou ID enviado estão corretos.");
+  }
 }
 
 export { loadGroupHost };

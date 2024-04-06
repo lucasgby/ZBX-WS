@@ -22,7 +22,7 @@ async function sendGraph(graphid: number, from: string, message: string, name: s
 
   const media = new MessageMedia('image/png', base64String);
 
-  const link = `http://sede.vidatel.com.br/chart2.php?graphid=${graphid}&from=now-${from}&to=now&height=200&width=480`;
+  const link = `http://sede.vidatel.com.br/chart2.php?graphid=${graphid}&from=now-${from}&to=now&height=200&width=500`;
   const caption = `${name}: ${from} \n\n${link}`;
 
   Promise.all([
@@ -35,7 +35,7 @@ const getGraphInfo = async ({ hostId, from, message, groupId }: Params) => {
 
   try {
     const response = await getGraphHost({ hostId });
-    const graph = response.result.find((value) => value.name === "Tensão x Uptime");
+    const graph = response.result.find((value) => value.name.toLowerCase() == "tensão x uptime");
 
     if (graph) {
       await sendGraph(Number(graph.graphid), from, message, graph.name);

@@ -7,7 +7,7 @@ interface CreateChatRequest {
 }
 
 interface UpdateChatRequest {
-  chat_id: string;
+  chat_id?: string;
   server?: string;
   chat_name?: string;
   is_active?: boolean
@@ -21,7 +21,7 @@ const createChatSchema = object().shape({
 });
 
 const updateChatSchema = object().shape({
-  chat_id: string().trim().required(),
+  chat_id: string().trim(),
   server: string().trim().length(4),
   chat_name: string().trim(),
   is_active: boolean()

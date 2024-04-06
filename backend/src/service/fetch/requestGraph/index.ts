@@ -1,7 +1,6 @@
 import { apiZabbix } from "../../api";
 
 import { ParamsGetGraphHostById } from "../../../types/graph/ParamsTypes";
-import { GraphResponse } from "../../../types/graph/GraphResponse";
 import { paramsGetGraphHostByFilter, paramsHostGetSelectGraphs } from "../../../apiParams/host/GET";
 import { GraphsHostResponse } from "../../../types/host/HostReponse/GraphsHost";
 
@@ -13,10 +12,10 @@ async function getGraphHostById({ hostId }: ParamsGetGraphHostById): Promise<Gra
   return data;
 }
 
-async function getGraphHostByFilter(host: string): Promise<GraphResponse> {
+async function getGraphHostByFilter(host: string): Promise<GraphsHostResponse> {
   const requestParams = paramsGetGraphHostByFilter({ host });
 
-  const { data } = await apiZabbix.post<GraphResponse>('', requestParams);
+  const { data } = await apiZabbix.post<GraphsHostResponse>('', requestParams);
 
   return data;
 }

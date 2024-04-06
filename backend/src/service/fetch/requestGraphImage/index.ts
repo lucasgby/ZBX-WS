@@ -1,4 +1,4 @@
-import { paramsGetGraphInFilter, paramsGetGraphHostByHostid } from "../../../apiParams/graph/GET";
+import { paramsGetGraphInFilter, paramsGetGraphHostByHostid, paramsGetGraphById } from "../../../apiParams/graph/GET";
 import { CONSTANTS } from "../../../config/server";
 import { GraphResponse } from "../../../types/graph/GraphResponse";
 import { ParamsGetGraphHostById, ParamsGraph } from "../../../types/graph/ParamsTypes";
@@ -48,3 +48,10 @@ export async function getGraph(name: string, host: string): Promise<GraphRespons
 
   return data;
 }
+
+export async function getGraphById(graphids: number): Promise<GraphResponse> {
+  const requestParams = paramsGetGraphById(graphids);
+  const { data } = await apiZabbix.post<GraphResponse>('', requestParams);
+
+  return data;
+}3

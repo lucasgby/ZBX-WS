@@ -1,3 +1,7 @@
-export const output = {
-  "output": "extend"
-}
+export const output = [
+  "groupid",
+  "internal",
+  "flags",
+  "uuid",
+  "name"
+]
