@@ -36,5 +36,5 @@ app.use(errorMiddleware);
 //client.initialize();
 
 app.listen(CONSTANTS.PORT, () => {
-  console.log(`Server  is running in: http://localhost:${CONSTANTS.PORT}`);
+  console.log(`Server  is running in: ${CONSTANTS.SERVER}`);
 })

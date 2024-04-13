@@ -1,0 +1,4 @@
+.container {
+  @apply
+  h-full w-full flex overflow-hidden
+}

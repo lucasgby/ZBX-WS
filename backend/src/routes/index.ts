@@ -6,6 +6,10 @@ import { messageRoutes } from "./message.routes";
 import { graphRoutes } from "./graph.routes";
 import { chatRoutes } from "./chat.routes";
 import { commandRoutes } from "./command.routes";
+import { statusRoutes } from "./status.routes";
+import { reportRoutes } from "./report.routes";
+import { authMiddleware } from "../middlewares/auth";
+import { loginRouter } from "./login.routes";
 
 const routes = Router();
 
@@ -17,11 +21,17 @@ routes.get('/', (req: Request, res: Response) => {
   });
 });
 
+routes.use(loginRouter);
 routes.use(staticImagesRoutes);
+
+routes.use(authMiddleware);
+
 routes.use(groupsRoutes);
 routes.use(messageRoutes);
 routes.use(graphRoutes);
 routes.use(chatRoutes);
 routes.use(commandRoutes);
+routes.use(statusRoutes);
+routes.use(reportRoutes);
 
 export { routes };

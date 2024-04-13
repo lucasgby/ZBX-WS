@@ -1,0 +1,17 @@
+.container {
+  @apply
+  flex flex-col
+  h-full w-full
+  relative
+  rounded-r-[32px]
+  pt-2 pr-2
+  bg-slate-100
+}
+
+.content {
+  @apply
+  flex 
+  items-center justify-center
+  z-10 mt-4
+  p-10 gap-6
+}

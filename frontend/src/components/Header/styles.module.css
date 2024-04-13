@@ -1,0 +1,18 @@
+.container-header {
+  @apply 
+  flex justify-center
+  h-16 min-h-16 w-full
+ text-white
+  rounded-tr-[32px]
+  rounded-bl-[36px]
+}
+
+.content-information {
+  @apply flex flex-col items-center justify-center
+}
+
+.title {
+  @apply
+  font-semibold
+  
+}

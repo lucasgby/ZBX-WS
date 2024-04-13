@@ -1,0 +1,36 @@
+.status {
+  @apply
+  flex flex-col
+  w-56
+  border-[1px] rounded-md
+  p-2
+}
+
+.content-connection {
+  @apply
+  flex justify-center items-center 
+  flex-col 
+  h-24 w-24 
+  border-[1px] text-primary_text
+  rounded-md text-4xl
+  transition-all duration-500
+
+  mt-2 mb-4
+}
+
+.description {
+  @apply
+  flex items-center gap-2 text-2xl
+}
+
+.content-phone {
+  @apply
+  flex items-center gap-1 mt-2
+}
+
+.content-connection:hover {
+  @apply
+  cursor-pointer
+  text-green-600
+  shadow-xl border-green-600
+}

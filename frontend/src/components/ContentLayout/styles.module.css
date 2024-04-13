@@ -1,0 +1,17 @@
+.container {
+  @apply
+  relative overflow-hidden
+  h-full w-[95%]
+  bg-slate-50
+  p-1 mt-6 mb-3
+  rounded
+  shadow-2xl 
+  border-slate-300 border-[1px]
+}
+
+.inner-container {
+  @apply
+    flex flex-col rounded-sm
+    h-full max-h-[100%]
+    border-1 p-4
+}

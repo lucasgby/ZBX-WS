@@ -1,8 +1,11 @@
 import { Request, Response } from "express";
-import { client } from "./mainController";
+
+import { prisma } from "../database/prismaClient";
 
 const statusController = async (req: Request, res: Response) => {
-  const clientConnect = await client.getState();
+  const clientConnect = await prisma.session.findMany()
+
+  return res.status(200).json({ result: clientConnect })
 }
 
 export {

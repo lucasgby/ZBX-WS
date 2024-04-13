@@ -7,19 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Plan {
-  id Int @id @default(autoincrement())
-
-  description String @db.VarChar() @unique()
-  
-  count_users Int @db.Integer()
-  count_sessions Int @db.Integer()
-  count_shedule Int @db.Integer()
-
-  @@index([id], name: "idx_plan_id")
-  @@map("plans")
-}
-
 model Organization {
   id Int @id @default(autoincrement())
 
@@ -27,14 +14,11 @@ model Organization {
   updatedAt DateTime @updatedAt
 
   description String  @db.VarChar()
-  cnpj        String  @db.Char(14)
   is_active   Boolean @default(true)
 
   users    User[]
   reports  Report[]
-  schedule Shedule[]
-
-  sessions Session[]
+  schedule Schedule[]
 
   @@index([id], name: "idx_organization_id")
   @@map("organizations")
@@ -58,12 +42,11 @@ model User {
   organization_id Int
   Organization    Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  shedules Shedule[]
+  shedules Schedule[]
 
   @@index([id], name: "idx_user_id")
   @@index([email], name: "idx_user_email")
   @@index([login], name: "idx_user_login")
-
   @@map("users")
 }
 
@@ -76,7 +59,7 @@ model Chat {
   is_active Boolean @default(true)
 
   report  Report[]
-  Shedule Shedule[]
+  Shedule Schedule[]
 
   @@index([id], map: "idx_chat_id")
   @@map("chats")
@@ -85,22 +68,20 @@ model Chat {
 model Session {
   id Int @id @default(autoincrement())
 
-  session        String        @db.VarChar()
-  qr             String?        @db.VarChar()
-  is_connect     Boolean       @default(false)
-
-  organization_id Int
-  Organization   Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  session    String  @db.VarChar()
+  is_connect Boolean @default(false)
 
   @@index([id], name: "idx_session_id")
   @@map("sessions")
 }
 
-model Shedule {
+model Schedule {
   id Int @id @default(autoincrement())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  description String @db.VarChar(50)
 
   hour      Int @db.Integer()
   minute    Int @db.Integer()
@@ -118,7 +99,7 @@ model Shedule {
   User    User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@index([id], name: "idx_shedule_id")
-  @@map("shedules")
+  @@map("schedules")
 }
 
 model Report {
@@ -130,7 +111,7 @@ model Report {
   description String @db.VarChar()
 
   achive_type    String @db.VarChar()
-  arquive_name   String @db.VarChar()
+  arquive_name   String @db.VarChar() @unique()
   arquive_locate String @db.VarChar()
 
   chat_id Int
@@ -141,13 +122,4 @@ model Report {
 
   @@index([id], name: "idx_report_id")
   @@map("reports")
-}
-
-model ScheduleTrigger {
-  id Int @id @default(autoincrement())
-
-  cronExpression Int @default(40)
-  
-  @@index([id], name: "idx_schedule_trigger_id")
-  @@map("schedule_triggers")
 }

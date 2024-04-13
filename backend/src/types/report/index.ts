@@ -9,6 +9,7 @@ interface Trigger {
   hosts: {
     name: string;
     date: string;
+    triggerid: string
   }[];
 }[];
 

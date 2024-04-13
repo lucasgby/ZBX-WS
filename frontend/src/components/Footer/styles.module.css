@@ -1,0 +1,106 @@
+.container-footer {
+  @apply 
+  flex items-center justify-between self-end
+  h-8 min-h-8 w-full
+  pl-4 pr-4 
+  rounded-br-[32px]
+  rounded-tl-[20px] 
+  text-white
+}
+
+.container-information-left {
+  @apply
+  hidden
+}
+
+.container-information {
+  @apply
+  block text-[8px] text-center
+}
+
+.link {
+  @apply
+  text-[8px] ml-[2px]
+}
+
+.text-copy {
+  @apply
+  inline
+}
+
+.name-user {
+  @apply
+  text-[10px] ml-[2px] font-semibold
+}
+
+@media (min-width: 480px) {
+  .container-information-left {
+    @apply
+    block text-[8px]
+  }
+
+  .container-information {
+    @apply text-left
+  }
+}
+
+@media (min-width: 768px) {
+  .container-copy {
+    @apply text-[12px]
+  }
+
+  .link {
+    @apply
+    text-[12px]
+  }
+
+  .container-information {
+    @apply
+    text-[12px]
+  }
+
+  .container-information-left {
+    @apply
+    text-[12px]
+  }
+
+  .name-user {
+    @apply
+    text-[12px]
+  }
+}
+
+@media (min-width: 960px) {
+  .container-information {
+    @apply text-[14px]
+  }
+
+  .container-information-left {
+    @apply
+    text-[14px]
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-copy {
+    @apply
+    inline
+  }
+
+  .name-user {
+    @apply
+    inline
+  }
+
+  .link {
+    @apply inline
+  }
+
+  .container-information {
+    @apply inline
+  }
+
+  .container-information-left {
+    @apply inline
+  }
+}

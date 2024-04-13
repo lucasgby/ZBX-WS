@@ -1,0 +1,7 @@
+.container {
+  @apply
+  h-screen w-screen
+  p-4
+  bg-on_bg_tree
+  overflow-hidden 
+}

@@ -1,0 +1,8 @@
+.container {
+  @apply
+  flex flex-col justify-between
+  w-full pt-4 px-4 pb-2
+  items-center 
+  rounded-r-[32px]
+  bg-slate-100
+}

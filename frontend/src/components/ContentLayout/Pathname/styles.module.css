@@ -1,0 +1,10 @@
+.pathname-styles {
+  @apply
+  absolute
+  top-0 left-6 
+  pl-2 pr-2 
+  font-normal text-[14px] 
+  bg-white 
+  rounded-md 
+  border-slate-300 border-[1px]
+}

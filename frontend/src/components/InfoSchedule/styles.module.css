@@ -1,0 +1,62 @@
+.container {
+  @apply
+  relative self-start
+  flex flex-col
+  h-40 w-40
+  rounded-2xl border-1 
+  p-1 
+  shadow
+  transition-all duration-200
+}
+
+.title {
+  @apply
+  text-xs text-center font-medium
+}
+
+.status {
+  @apply
+  border-b-[0.5px] 
+  text-[14px]
+  text-right
+  font-semibold
+}
+
+.content-btn {
+  @apply
+  absolute bottom-0
+  flex
+  h-10 w-full 
+  items-center justify-center 
+  gap-2
+}
+
+.content-btn-actions {
+  @apply
+  absolute right-[-10px] top-[15%] 
+  flex flex-col 
+  items-center justify-center
+  gap-2
+}
+
+.btn-actions {
+  @apply
+  z-10
+  text-white rounded-md p-[2px]
+  transition-all
+}
+
+.container:hover {
+  @apply
+  bg-slate-50 shadow-xl 
+}
+
+.status:hover {
+  @apply
+  cursor-pointer
+}
+
+.btn-actions:hover {
+  @apply
+  scale-125
+}

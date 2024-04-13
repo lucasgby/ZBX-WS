@@ -1,0 +1,9 @@
+.container {
+  @apply
+  flex
+  h-full w-full
+  rounded-[36px]
+  py-[10px] pr-[10px]
+  bg-bg
+  shadow-xl
+}

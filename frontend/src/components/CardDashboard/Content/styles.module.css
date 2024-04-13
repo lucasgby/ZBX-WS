@@ -1,0 +1,6 @@
+.container {
+  @apply
+  flex flex-col
+  gap-6
+  h-full w-full
+}

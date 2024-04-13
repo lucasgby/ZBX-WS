@@ -1,0 +1,11 @@
+.table-container {
+  @apply
+  h-[320px]
+}
+
+@media (min-width: 1536px) {
+  .table-container {
+    @apply
+    h-[800px]
+  }
+}

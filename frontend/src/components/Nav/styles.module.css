@@ -1,0 +1,57 @@
+.container {
+  @apply
+  flex flex-col 
+  rounded-l-[32px]
+  w-32 h-full
+
+  transition-all
+}
+
+.sid-close {
+  @apply
+  flex flex-col 
+  w-12 h-full
+}
+
+.navigation {
+  @apply
+  flex flex-col
+  items-center
+  pt-10
+  text-primary_text font-medium text-[16px]
+  gap-2
+}
+
+.option {
+  @apply
+  flex flex-row items-center gap-2
+  p-2 w-full
+  rounded relative
+  transition-all
+}
+
+.option-close {
+  @apply
+  flex items-center justify-center
+  p-2 w-full
+  rounded relative
+  font-medium text-[18px]
+
+  transition-all
+}
+
+.indicate-page {
+  @apply
+  absolute
+  h-full w-[3px]
+  rounded
+  bg-primary_text
+  right-0
+}
+
+.option:hover, .option-close:hover {
+  @apply
+  cursor-pointer
+  text-white font-semibold
+  bg-primary_text
+}

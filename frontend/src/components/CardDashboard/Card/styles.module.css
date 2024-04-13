@@ -1,0 +1,12 @@
+.card {
+  @apply
+  flex justify-center p-2
+  h-full w-[20%]
+  rounded-xl
+  bg-slate-200
+}
+
+.title {
+  @apply
+  font-semibold
+}

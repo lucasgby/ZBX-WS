@@ -1,0 +1,5 @@
+.container {
+  @apply
+  rounded-xl w-full
+  h-[40%] bg-[#252525]
+}

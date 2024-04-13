@@ -1,7 +1,7 @@
 import { CONSTANTS } from "../config/server";
 import { getGraphInfo } from "../controller/graphController";
 import { sendMensageTrigger } from "../controller/messageController";
-import { priorityIncidente } from "../model/incident";
+import { priorityIncidente } from "../utils/priorityIncident";
 
 import { getNewTrigger } from "../service/fetch/requestTriggers";
 import { ParamsLoadDiagnostic, ParamsSendMessage } from "../types/theadNewMessage/ParamsThread";

@@ -1,0 +1,9 @@
+.title {
+  @apply
+  inline-block self-center
+  h-8
+  py-1 px-2 mb-2
+  font-semibold text-white text-center 
+  bg-color-primary-gradient 
+  rounded-3xl 
+ }

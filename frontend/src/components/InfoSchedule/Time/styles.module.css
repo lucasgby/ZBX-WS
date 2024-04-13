@@ -1,0 +1,15 @@
+.btn-time {
+  @apply
+  flex items-center gap-1 mt-1
+  border-b-1 border-slate-600 rounded-sm
+
+  transition-all duration-200
+}
+
+.btn-time:hover {
+  @apply
+  cursor-pointer
+  text-cyan-700
+  
+  border-cyan-500
+}

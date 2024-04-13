@@ -1,0 +1,10 @@
+.btn {
+  @apply
+  text-white text-[18px] py-1 rounded-sm px-4
+  transition-all
+}
+
+.btn:hover {
+  @apply
+  scale-105
+}

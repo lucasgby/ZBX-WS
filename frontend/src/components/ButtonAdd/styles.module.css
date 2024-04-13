@@ -1,0 +1,14 @@
+.btn {
+  @apply
+  absolute top-0 right-1 
+  font-semibold
+text-white text-center p-1 
+bg-cyan-500 rounded-lg 
+  transition-all duration-200
+}
+
+.btn:hover {
+  @apply
+  cursor-pointer
+  bg-cyan-600
+}

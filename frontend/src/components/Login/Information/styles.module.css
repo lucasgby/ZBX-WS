@@ -1,0 +1,49 @@
+.content-info {
+  @apply
+  hidden
+}
+
+.inner-content {
+  @apply
+  flex flex-col 
+  h-full w-full 
+  items-center 
+  backdrop-blur-2xl
+  rounded-[18px] p-2
+}
+
+.title {
+  @apply
+  font-bold text-[28px] mb-1
+}
+
+.subtitle {
+  @apply
+  text-xs font-medium
+}
+
+.content-description {
+  @apply
+  flex flex-col mt-4 p-2 text-base gap-4
+}
+
+.content-logos {
+  @apply
+  flex justify-around items-center gap-1 mt-2 w-full
+}
+
+.icon-ws {
+  @apply
+  text-green-600 h-[80px] w-[80px] bg-white rounded-[25%] p-1
+}
+
+@media (min-width: 768px) {
+  .content-info {
+    @apply
+    p-9 block
+    text-white
+    w-[50%] h-full 
+    rounded-[22px]
+    bg-bg-login
+  }
+}

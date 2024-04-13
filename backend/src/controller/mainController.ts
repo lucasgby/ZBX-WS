@@ -8,22 +8,20 @@ import { loadGroupHost } from "./hostController";
 
 import { acknowledgeEventBot, loadGraphHost } from "./bot";
 import { loadGraphBot } from "./bot/graphController";
+import { prisma } from "../database/prismaClient";
 
 const client = new Client({
   authStrategy: new LocalAuth({
-    dataPath: 'ws-session-zbx',
+    dataPath: 'wsSessionZbx'
   }),
 });
 
-client.once('ready', () => {
+client.once('ready', async () => {
   console.log('Client is ready!');
 
   deleteQRCode();
-  const state = {
-    connect: true
-  }
 
-  client.emit('connect', state);
+  await prisma.session.create({ data: { is_connect: true, session: 'wsSessionZbx' } });
 });
 
 client.on('message', async (msg) => {
@@ -62,7 +60,7 @@ client.on('message', async (msg) => {
 
 });
 
-client.on('qr', (qr) => {
+client.on('qr', async (qr) => {
   qrcode.generate(qr, { small: true });
   saveQRCode(qr)
 });

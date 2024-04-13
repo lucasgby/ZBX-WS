@@ -37,13 +37,14 @@ export async function reportTriggerWeekly() {
           groupedTriggers.push({
             tipo: item.description, quantidade: 1, hosts: [{
               name: String(item.hosts?.[0]?.host),
-              date: converterTimestamp(item.lastchange)
+              date: converterTimestamp(item.lastchange),
+              triggerid: item.triggerid
             }]
           });
 
         } else {
           groupedTriggers[index].quantidade++;
-          groupedTriggers[index].hosts.push({ name: String(item.hosts?.[0]?.host), date: converterTimestamp(item.lastchange) });
+          groupedTriggers[index].hosts.push({ name: String(item.hosts?.[0]?.host), date: converterTimestamp(item.lastchange), triggerid: item.triggerid });
         }
       });
 

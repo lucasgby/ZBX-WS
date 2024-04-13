@@ -1,0 +1,6 @@
+.content-info {
+  @apply
+  h-[60%] w-full
+  rounded-xl
+  bg-slate-600
+}

@@ -1,0 +1,72 @@
+.content {
+  @apply
+  h-full w-[100%]
+  flex flex-col items-center
+  gap-2 overflow-auto
+}
+
+.title {
+  @apply
+  font-bold text-[22px] mb-1
+}
+
+.subtitle {
+  @apply
+  font-light text-[12px] text-gray-500
+}
+
+.content-form {
+  @apply
+  flex flex-col w-full gap-3 mt-4
+}
+
+.btn {
+  @apply
+  p-3 mt-2 
+  rounded-xl 
+  text-white font-bold text-[18px]
+  bg-gradient-to-l from-color-secundary-gradient to-color-primary-gradient 
+
+  transition ease-in-out delay-150
+}
+
+.icon-eye {
+  @apply
+  text-2xl text-default-400 pointer-events-none
+}
+
+.icon-bot {
+  @apply
+  mt-2
+}
+
+.btn:hover{
+  @apply
+  scale-95
+}
+
+.icon-bot:hover {
+  @apply
+  scale-105 cursor-pointer
+}
+
+@media (min-width: 640px) {
+  .subtitle {
+    @apply
+    text-[18px]
+  }
+}
+
+@media (min-width: 768px) {
+  .content {
+    @apply
+    h-full w-[60%] 
+    flex flex-col items-center 
+    py-6 px-20 gap-2
+  }
+
+  .title {
+    @apply
+    text-[32px]
+  }
+}

@@ -1,4 +1,3 @@
-
 export const groups = [
   { groupid: 34, local: "AGUA BRANCA", id_g_ws: "558199626363-1589826430", hostid: 10642 },
   { groupid: 43, local: "BARRA", id_g_ws: "558199626363-1592919241", hostid: 10669 },
