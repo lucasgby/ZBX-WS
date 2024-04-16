@@ -1,7 +1,7 @@
 "use client";
 
 import { UseFormReturn } from 'react-hook-form';
-import { FormModalType } from "@/types/FormModalType";
+import { FormModalType } from "@/types/Form/FormModalType";
 
 import {
   Modal,

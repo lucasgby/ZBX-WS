@@ -24,3 +24,17 @@ body {
 .content-gradient {
   @apply bg-gradient-to-r from-color-primary-gradient to-color-secundary-gradient
 }
+
+.scrollbar-conf {
+  @apply 
+  overflow-auto 
+  scrollbar
+  scrollbar-w-3 scrollbar-h-2 
+  scrollbar-thumb-color-secundary-gradient
+  scrollbar-thumb-rounded-xl 
+  scrollbar-track-transparent
+}
+
+.erros {
+  @apply text-error text-sm font-medium
+}

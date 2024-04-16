@@ -1,4 +1,4 @@
-import { ChatResponse } from "@/types/ChatResponse";
+import { ChatResponse } from "@/types/Chat/ChatResponse";
 import { api } from "../api";
 
 async function getChat({ page, take }: PaginationProps) : Promise<ChatResponse>{

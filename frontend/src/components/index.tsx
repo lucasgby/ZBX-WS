@@ -13,4 +13,4 @@ export * from "./ContentTable";
 export * from "./InfoSchedule";
 export * from "./ButtonAdd";
 export * from "./ModalForm";
-export * from "./Login";
+export * from "./Login"

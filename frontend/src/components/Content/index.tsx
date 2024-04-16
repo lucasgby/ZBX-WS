@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 
 import styles from "./styles.module.css";
 
+
 interface ContentProps {
   children: ReactNode
 }

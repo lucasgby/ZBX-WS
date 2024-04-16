@@ -33,6 +33,7 @@ const config: Config = {
         'color-primary-gradient': 'rgba(51, 134, 142, 1)',
         'color-secundary-gradient': 'rgba(0, 166, 182, 1)',
         'primary_text': 'rgb(20, 184, 166)',
+        'error': '#FF0000'
       }, 
 
       fontWeight: {
@@ -45,6 +46,6 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [require("tailwind-scrollbar")({ nocompatible: true }), nextui()],
 };
 export default config;

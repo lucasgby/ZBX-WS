@@ -13,12 +13,13 @@ model Organization {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  description String  @db.VarChar()
+  description String  @unique() @db.VarChar()
   is_active   Boolean @default(true)
 
-  users    User[]
-  reports  Report[]
-  schedule Schedule[]
+  users     User[]
+  reports   Report[]
+  schedule  Schedule[]
+  HostGroup HostGroup[]
 
   @@index([id], name: "idx_organization_id")
   @@map("organizations")
@@ -38,6 +39,8 @@ model User {
 
   passwordResetToken   String?   @default("")
   passwordResetExpires DateTime?
+
+  role String
 
   organization_id Int
   Organization    Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
@@ -111,7 +114,7 @@ model Report {
   description String @db.VarChar()
 
   achive_type    String @db.VarChar()
-  arquive_name   String @db.VarChar() @unique()
+  arquive_name   String @unique() @db.VarChar()
   arquive_locate String @db.VarChar()
 
   chat_id Int
@@ -122,4 +125,29 @@ model Report {
 
   @@index([id], name: "idx_report_id")
   @@map("reports")
+}
+
+model HostGroup {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  group_host_id Int    @unique() @db.Integer()
+  description   String @db.VarChar(80)
+
+  id_g_ws String @unique()
+
+  hostid Int @unique() @db.Integer()
+
+  is_active      Boolean       @default(true)
+
+  organization_id Int
+  Organization   Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([id], name: "idx_host_group_id")
+  @@index([group_host_id], name: "idx_host_group_grouphostid")
+  @@index([hostid], name: "idx_host_group_id_ws")
+
+  @@map("hostgroups")
 }

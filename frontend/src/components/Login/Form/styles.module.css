@@ -1,20 +1,3 @@
-.content {
-  @apply
-  h-full w-[100%]
-  flex flex-col items-center
-  gap-2 overflow-auto
-}
-
-.title {
-  @apply
-  font-bold text-[22px] mb-1
-}
-
-.subtitle {
-  @apply
-  font-light text-[12px] text-gray-500
-}
-
 .content-form {
   @apply
   flex flex-col w-full gap-3 mt-4
@@ -48,25 +31,4 @@
 .icon-bot:hover {
   @apply
   scale-105 cursor-pointer
-}
-
-@media (min-width: 640px) {
-  .subtitle {
-    @apply
-    text-[18px]
-  }
-}
-
-@media (min-width: 768px) {
-  .content {
-    @apply
-    h-full w-[60%] 
-    flex flex-col items-center 
-    py-6 px-20 gap-2
-  }
-
-  .title {
-    @apply
-    text-[32px]
-  }
 }

@@ -1,5 +1,6 @@
-import { Form } from "@/components/Login/Form";
 import { Information } from "@/components/Login/Information";
+
+import { ContentFormLogin } from "./ContentFormLogin";
 
 import styles from "./styles.module.css";
 
@@ -8,7 +9,7 @@ export function Login() {
     <div className={styles.container}>
       <Information/>
 
-      <Form />
+      <ContentFormLogin />
     </div>
   )
 }

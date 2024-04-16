@@ -1,4 +1,4 @@
-import { FormModalType } from "@/types/FormModalType";
+import { FormModalType } from "@/types/Form/FormModalType";
 
 const inputOptions = (value?: string) => {
   const data: FormModalType[] = [

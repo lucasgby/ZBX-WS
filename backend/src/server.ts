@@ -14,10 +14,12 @@ import { CONSTANTS } from "./config/server";
 import { client } from "./controller/mainController";
 
 import { errorMiddleware } from "./middlewares/error";
+import { createInitialOrganization } from "./controller/organizationController";
 
 const app = express();
 
 //diagnosticController();
+createInitialOrganization();
 
 schedule.scheduleJob({ hour: 9, minute: 0, dayOfWeek: 6 }, async () => {
   await reportTriggerWeekly();

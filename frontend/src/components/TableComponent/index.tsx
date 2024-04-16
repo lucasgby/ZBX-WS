@@ -1,15 +1,7 @@
 "use client";
 
 import {
-  Table, 
-  TableHeader, 
-  TableColumn, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  getKeyValue, 
-  Spinner, 
-  SortDescriptor,
+  Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, Spinner, SortDescriptor,
 } from "@nextui-org/react";
 
 import styles from './styles.module.css';
