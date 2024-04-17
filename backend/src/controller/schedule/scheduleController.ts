@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { prisma } from "../database/prismaClient";
-import { NotFoundError } from "../model/api-errors";
-import { CreateScheduleRequest, createScheduleSchema } from "../model/scheduleSchema";
+import { prisma } from "../../database/prismaClient";
+import { NotFoundError } from "../../model/api-errors";
+import { CreateScheduleRequest, createScheduleSchema } from "../../model/schema/scheduleSchema";
 
 async function getShedule(id: number) {
   const schedule = await prisma.schedule.findUnique({ where: { id } });
@@ -35,22 +35,24 @@ const alter_status_schedule = async (req: Request, res: Response) => {
   const schedule = await getShedule(Number(id));
 
   if (schedule) {
-    await prisma.schedule.update({ 
+    await prisma.schedule.update({
       where: { id: schedule.id },
       data: {
         is_active: schedule.is_active ? false : true
       }
-     });
+    });
 
-     return res.status(204).json({ message: `Schedule ${schedule.is_active ? 'disable' : 'active'} Sucessfully` })
+    return res.status(204).json({ message: `Schedule ${schedule.is_active ? 'disable' : 'active'} Sucessfully` })
   }
 
   throw new NotFoundError("Schedule not Found");
 };
 
 const create_new_schedule = async (req: Request, res: Response) => {
+  const { user } = req;
+
   const requestData: CreateScheduleRequest = await createScheduleSchema.validate(req.body, { abortEarly: false });
-  const { dayOfWeek, description, hour, minute } = requestData;
+  const { dayOfWeek, description, hour, minute, chat_id } = requestData;
 
   await prisma.schedule.create({
     data: {
@@ -58,6 +60,9 @@ const create_new_schedule = async (req: Request, res: Response) => {
       dayOfWeek,
       minute,
       description,
+      user_id: user.id ?? 1,
+      organization_id: user.organization_id ?? 1,
+      chat_id  
     }
   });
 };

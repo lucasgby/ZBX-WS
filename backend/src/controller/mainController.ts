@@ -2,12 +2,11 @@ import { Client, LocalAuth } from "whatsapp-web.js";
 import qrcode from "qrcode-terminal";
 
 import { saveQRCode, deleteQRCode } from "../model/qrCodeOperations";
-import { botOptions } from "./botController";
+import { botOptions } from "./bot/botController";
 
-import { loadGroupHost } from "./hostController";
+import { loadGroupHost } from "../function/hostGroup";
 
-import { acknowledgeEventBot, loadGraphHost } from "./bot";
-import { loadGraphBot } from "./bot/graphController";
+import { acknowledgeEventBot, loadGraphHost, loadGraphBot } from "./bot";
 import { prisma } from "../database/prismaClient";
 
 const client = new Client({

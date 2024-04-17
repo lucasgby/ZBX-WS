@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { sendReport } from "./report/reportConfigController";
+import { sendReport } from "../trigger/reportConfigController";
 
-import { GetReport, getReportSchema } from "../model/reportSchema";
-import { CONSTANTS } from "../config/server";
+import { GetReport, getReportSchema } from "../../model/schema/reportSchema";
+import { CONSTANTS } from "../../config/server";
 
 const loadReport = async (req: Request, res: Response) => {
   const requestData: GetReport = await getReportSchema.validate(req.body, { abortEarly: false });

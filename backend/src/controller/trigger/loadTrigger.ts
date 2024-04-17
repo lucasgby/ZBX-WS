@@ -77,5 +77,4 @@ async function loadTrigger({ groupId, lastChangeSince, lastChangeTill }: LoadTri
   return { triggers, topTriggers };
 }
 
-
 export { loadTrigger };

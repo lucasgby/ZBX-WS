@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import parserPhoneNumber, { isValidPhoneNumber } from 'libphonenumber-js';
 
-import { client } from "./mainController";
-import { BadRequestError } from "../model/api-errors";
+import { client } from "../mainController";
+import { BadRequestError } from "../../model/api-errors";
 
-const sendMessage = async (req: Request, res: Response) => {
+const send_message = async (req: Request, res: Response) => {
   const { number, message } = req.body;
 
   if (!isValidPhoneNumber(number, "BR")) {
@@ -24,7 +24,7 @@ const sendMessage = async (req: Request, res: Response) => {
   throw new BadRequestError("Erro ao enviar mensagem");
 }
 
-const sendMessageGroup = async (req: Request, res: Response) => {
+const send_message_group = async (req: Request, res: Response) => {
   const { groupId, message } = req.body;
 
   const formatGroup = String(groupId).includes("@g.us") ? groupId : `${groupId}@g.us`;
@@ -49,7 +49,7 @@ const sendMensageTrigger = async (groupId: string, message: string) => {
   }
 }
 
-const sendMessageTriggerMikrotik = async (req: Request, res: Response) => {
+const send_message_trigger_mikrotik = async (req: Request, res: Response) => {
   const { groupId, message, identify } = req.params;
 
   try {
@@ -67,8 +67,8 @@ const sendMessageTriggerMikrotik = async (req: Request, res: Response) => {
 }
 
 export {
-  sendMessage,
-  sendMessageGroup,
+  send_message,
+  send_message_group,
   sendMensageTrigger,
-  sendMessageTriggerMikrotik
+  send_message_trigger_mikrotik
 }

@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { MessageMedia } from "whatsapp-web.js";
 
-import { getGraphHost, getGraphImage } from "../service/fetch/requestGraphImage";
+import { getGraphHost, getGraphImage } from "../../service/fetch/requestGraphImage";
 
-import { client } from './mainController';
-import { CONSTANTS } from "../config/server";
-import { BadRequestError, NotFoundError } from "../model/api-errors";
+import { client } from '../mainController';
+import { CONSTANTS } from "../../config/server";
+import { BadRequestError, NotFoundError } from "../../model/api-errors";
 
 type Params = {
   hostId: number;

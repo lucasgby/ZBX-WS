@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { graph } from "../controller/graphController";
+import { graph } from "../controller/graph/graphController";
 
 const graphRoutes = Router();
 

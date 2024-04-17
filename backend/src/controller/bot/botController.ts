@@ -1,10 +1,10 @@
 import WAWebJS from "whatsapp-web.js";
 
-import { getHostgroups } from "../service/fetch/requestHostGroups";
-import { listCommandFormat } from "./commandControllers";
-import { loadAlert } from "../service/fetch/requestAlert";
+import { getHostgroups } from "../../service/fetch/requestHostGroups";
+import { listCommandFormat } from "../command/commandControllers";
+import { loadAlert } from "../../service/fetch/requestAlert";
 
-async function hostGroupBtns() {
+async function hostGroup() {
   const { result } = await getHostgroups();
 
   const options: String[] = [];
@@ -29,7 +29,7 @@ async function botOptions(msg: WAWebJS.Message) {
       break;
 
     case '/hostgroup':
-      const BTN = await hostGroupBtns();
+      const BTN = await hostGroup();
 
       msg.reply(`*GRUPO DE HOSTS DISPONÍVEIS:*\n\n${BTN}`);
 

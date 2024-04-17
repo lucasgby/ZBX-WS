@@ -19,7 +19,8 @@ model Organization {
   users     User[]
   reports   Report[]
   schedule  Schedule[]
-  HostGroup HostGroup[]
+  hostGroup HostGroup[]
+  scheduleIncidentZabbix ScheduleIncidentZabbix[]
 
   @@index([id], name: "idx_organization_id")
   @@map("organizations")
@@ -150,4 +151,20 @@ model HostGroup {
   @@index([hostid], name: "idx_host_group_id_ws")
 
   @@map("hostgroups")
+}
+
+model ScheduleIncidentZabbix {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  seconds_interval Int
+  is_active        Boolean @default(true)
+
+  organization_id Int
+  Organization    Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([id], name: "idx_schdule_incident_zabbix_id")
+  @@map("schedule_incidents_zabbix")
 }

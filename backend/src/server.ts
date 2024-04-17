@@ -6,7 +6,7 @@ import express from "express";
 import * as bodyParser from "body-parser";
 import cors from "cors";
 
-import { diagnosticController } from "./controller/diagnosticController";
+//import { listenAlert } from "./controller/listenAlert/listenTrigger";
 import { reportTriggerWeekly } from "./controller/reportController";
 
 import { routes } from "./routes";
@@ -18,7 +18,7 @@ import { createInitialOrganization } from "./controller/organizationController";
 
 const app = express();
 
-//diagnosticController();
+//listenAlert();
 createInitialOrganization();
 
 schedule.scheduleJob({ hour: 9, minute: 0, dayOfWeek: 6 }, async () => {

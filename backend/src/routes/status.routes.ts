@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { statusController } from "../controller/statusController";
+import { statusController } from "../controller/status/statusController";
 
 const statusRoutes = Router();
 

@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 
-import { client } from "../controller/mainController";
-import { NotFoundError } from "../model/api-errors";
+import { client } from "../mainController";
+import { NotFoundError } from "../../model/api-errors";
 
-const getAllGroups = async (req: Request, res: Response) => {
+const get_chats_ws = async (req: Request, res: Response) => {
   const { skip } = req.body;
 
   const data = await client.getChats();
@@ -18,5 +18,5 @@ const getAllGroups = async (req: Request, res: Response) => {
 }
 
 export {
-  getAllGroups,
+  get_chats_ws,
 }

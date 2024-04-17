@@ -1,11 +1,11 @@
-import { groups } from "../model/groupHost";
-import { Occurrence, Trigger } from "../types/report";
+import { groups } from "../../model/groupHost";
+import { Occurrence, Trigger } from "../../types/report";
 
-import { getTriggerWeekly } from "../service/fetch/requestTriggers";
-import { converterTimestamp, TIMESTAMPNOW } from "../utils";
+import { getTriggerWeekly } from "../../service/fetch/requestTriggers";
+import { converterTimestamp, TIMESTAMPNOW } from "../../utils";
 
-import { client } from "./mainController";
-import { CONSTANTS } from "../config/server";
+import { client } from "../mainController";
+import { CONSTANTS } from "../../config/server";
 
 export async function reportTriggerWeekly() {
   try {

@@ -1,7 +1,7 @@
 import WAWebJS from "whatsapp-web.js";
 
 import { getGraph, getGraphById } from "../../service/fetch/requestGraphImage";
-import { sendGraph } from "../graphController";
+import { sendGraph } from "../graph/graphController";
 
 type ParamsGetGraph = {
   name: string;

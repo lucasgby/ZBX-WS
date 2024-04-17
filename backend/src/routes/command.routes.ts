@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { listCommand } from "../controller/commandControllers";
+import { list_command } from "../controller/command/commandControllers";
 
 const commandRoutes = Router();
 
-commandRoutes.get('/command/list', listCommand);
+commandRoutes.get('/command/list', list_command);
 
 export { commandRoutes };

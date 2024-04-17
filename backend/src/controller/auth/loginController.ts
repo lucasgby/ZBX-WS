@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 
-import { getUserByLogin } from "../controller/userController";
+import { getUserByLogin } from "../user/userController";
 
 import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
 
-import { BadRequestError, NotFoundError } from '../model/api-errors';
+import { BadRequestError, NotFoundError } from '../../model/api-errors';
 
-import { CONSTANTS } from '../config/server';
+import { CONSTANTS } from '../../config/server';
 
 export const login = async (req: Request, res: Response) => {
   const { login, password } = req.body;
@@ -28,7 +28,7 @@ export const login = async (req: Request, res: Response) => {
     throw new BadRequestError("Login or password invalid.");
   }
 
-  const token = jwt.sign({ id: user.id }, CONSTANTS.PWT_PASS ?? '', { expiresIn: '30d' });
+  const token = jwt.sign({ id: user.id }, CONSTANTS.PWT_PASS ?? '', { expiresIn: '7d' });
 
   return res.status(200).json({
     result: {
@@ -37,6 +37,7 @@ export const login = async (req: Request, res: Response) => {
       organization: user.organization_id,
       is_active: user.is_active,
       email: user.email,
+      role: user.role,
       token
     }
   });

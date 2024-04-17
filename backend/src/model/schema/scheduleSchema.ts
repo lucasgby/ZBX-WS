@@ -2,9 +2,10 @@ import { number, object, string } from "yup";
 
 interface CreateScheduleRequest {
   description: string;
-  hour: number
-  minute: number
-  dayOfWeek: number
+  hour: number;
+  minute: number;
+  dayOfWeek: number;
+  chat_id: number
 }
 
 const createScheduleSchema = object().shape({
@@ -12,6 +13,7 @@ const createScheduleSchema = object().shape({
   hour: number().required(),
   minute: number().required(),
   dayOfWeek: number().required(),
+  chat_id: number().required("Informe o Chat para enviar seu relatorio")
 });
 
 export { CreateScheduleRequest };
