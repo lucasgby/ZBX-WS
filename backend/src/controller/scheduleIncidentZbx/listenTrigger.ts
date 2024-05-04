@@ -1,23 +1,16 @@
-import { Request, Response } from "express";
-
 import { scheduleJob, scheduledJobs } from 'node-schedule';
 import { threadNewMessage } from '../../middlewares/diagnosticTrigger';
 import { prisma } from "../../database/prismaClient";
 
-const SECONDS = 1000 * 40;
-/*
-function listenAlert() {
-  setInterval(async () => {
+async function loadSchedulesActives() {
+  const schedules = await prisma.scheduleIncidentZabbix.findMany({ where: { is_active: true } });
 
-    try {
+  schedules.map(async (value) => {
+    scheduledJobs[`inc${value.id}`] = scheduleJob(`*/${value.seconds_interval} * * * * *`, async () => {
       await threadNewMessage();
-    } catch (error) {
-
-      console.log("Error ao enviar mensagem para o Grupo");
-    }
-  }, SECONDS);
+    });
+  });
 }
-*/
 
 async function getScheduleIncidentById(id: number) {
   const schedule = await prisma.scheduleIncidentZabbix.findUnique({
@@ -27,4 +20,4 @@ async function getScheduleIncidentById(id: number) {
   return schedule;
 }
 
-export { getScheduleIncidentById };
+export { getScheduleIncidentById, loadSchedulesActives };

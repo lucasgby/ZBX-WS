@@ -1,6 +1,13 @@
 import { prisma } from "../../database/prismaClient";
+import { RolesType } from "../../model/roles";
 
 import { criptPassword } from "../../utils";
+
+async function getUserByLogin(login: string) {
+  const user = await prisma.user.findUnique({ where: { login } });
+
+  return user;
+}
 
 async function createInitialUser(organization_id: number) {
   const existingUser = await prisma.user.findFirst();
@@ -13,7 +20,7 @@ async function createInitialUser(organization_id: number) {
       login: 'admin',
       name: 'ADMIN',
       password: hashPassword,
-      role: 'super_admin',
+      role: RolesType.SUPER_ADMIN,
       organization_id: organization_id
     };
 
@@ -27,4 +34,4 @@ async function createInitialUser(organization_id: number) {
   console.log('Initial User has Created');
 };
 
-export { createInitialUser };
+export { createInitialUser, getUserByLogin };

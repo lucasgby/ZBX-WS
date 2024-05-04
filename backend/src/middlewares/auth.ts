@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
 import { BadRequestError, UnauthorizedError } from "../model/api-errors";
-import { getUserById } from "../controller/userController";
+import { getUserById } from "../controller/user/GET";
 import { CONSTANTS } from "../config/server";
 
 type JwtPayload = {

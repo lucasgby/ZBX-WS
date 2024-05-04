@@ -13,6 +13,10 @@ const client = new Client({
   authStrategy: new LocalAuth({
     dataPath: 'wsSessionZbx'
   }),
+  puppeteer: {
+    headless: "chrome",
+    args: ['--no-sandbox'],
+  }
 });
 
 client.once('ready', async () => {
@@ -20,7 +24,7 @@ client.once('ready', async () => {
 
   deleteQRCode();
 
-  await prisma.session.create({ data: { is_connect: true, session: 'wsSessionZbx' } });
+  await prisma.session.create({ data: { is_connect: true, session: '' } });
 });
 
 client.on('message', async (msg) => {
@@ -61,7 +65,8 @@ client.on('message', async (msg) => {
 
 client.on('qr', async (qr) => {
   qrcode.generate(qr, { small: true });
-  saveQRCode(qr)
+  saveQRCode(qr);
+  await prisma.session.create({ data: { is_connect: false, session: qr } });
 });
 
 export { client };

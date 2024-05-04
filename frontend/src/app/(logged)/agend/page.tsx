@@ -5,6 +5,7 @@ import { useModal } from "@/hooks/useModal";
 import { useSchemaValidade } from "@/hooks/useSchemaValidade";
 import { scheduleSchema, ScheduleSchema } from "@/model/formShema/scheduleShema";
 import { inputOptions } from "@/model/inputRegister/shedule";
+import { useSchedule } from "@/hooks/useSchedule";
 
 import styles from "./styles.module.css";
 
@@ -37,15 +38,6 @@ export default function Agend() {
           minute={0}
           is_active={true}
         />
-
-        <InfoSchedule
-          title="ENVIO DE DADOS QUARTA"
-          day={0}
-          hour={10}
-          minute={10}
-          is_active={false}
-        />
-
       </div>
 
     </div>

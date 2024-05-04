@@ -1,6 +1,6 @@
 import { CONSTANTS } from "../config/server";
-import { getGraphInfo } from "../controller/graphController";
-import { sendMensageTrigger } from "../controller/messageController";
+import { getGraphInfo } from "../controller/graph/graphController";
+import { sendMensageTrigger } from "../controller/message/messageController";
 import { priorityIncidente } from "../utils/priorityIncident";
 
 import { getNewTrigger } from "../service/fetch/requestTriggers";

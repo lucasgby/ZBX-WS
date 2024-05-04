@@ -12,8 +12,10 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic":
+        "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "bg-login": "url('/background.jpg')"
+
       },
 
       screens: {
@@ -33,7 +35,7 @@ const config: Config = {
         'color-primary-gradient': 'rgba(51, 134, 142, 1)',
         'color-secundary-gradient': 'rgba(0, 166, 182, 1)',
         'primary_text': 'rgb(20, 184, 166)',
-        'error': '#FF0000'
+        'error': '#FF0000',
       }, 
 
       fontWeight: {

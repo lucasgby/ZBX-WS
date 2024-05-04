@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { getOrganizationById } from "../organizationController";
 import { prisma } from "../../../database/prismaClient";
 import { NotFoundError } from "../../../model/api-errors";
-import { SelectMoreThanOrganization, selectMoreThanOrganization } from "../../../model/schema/organizationSchema";
+import { SelectMoreThanType, selectMoreThanSchema } from "../../../model/schema/selectMoreThanSchema";
 
 const delete_organization = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -19,7 +19,7 @@ const delete_organization = async (req: Request, res: Response) => {
 };
 
 const delete_more_than_organization = async (req: Request, res: Response) => {
-  const requestData : SelectMoreThanOrganization = await selectMoreThanOrganization.validate(req.body, { abortEarly: false });
+  const requestData : SelectMoreThanType = await selectMoreThanSchema.validate(req.body, { abortEarly: false });
   const { data } = requestData;
 
   const ids = data.map(value => value.id);

@@ -17,7 +17,7 @@ export async function reportTriggerWeekly() {
 
     let groupedTriggers: Trigger[] = [];
     let numberOfOccurrences: Occurrence[] = [];
-
+    
     groups.map(async (value, index) => {
       let configReport = `*RELATÓRIO SEMANAL ${value.local}* - ${dateSice} á ${dateTill} \n`
 

@@ -7,24 +7,28 @@ import * as bodyParser from "body-parser";
 import cors from "cors";
 
 //import { listenAlert } from "./controller/listenAlert/listenTrigger";
-import { reportTriggerWeekly } from "./controller/reportController";
+import { loadSchedulesActives } from "./controller/scheduleIncidentZbx/listenTrigger";
+import { reportTriggerWeekly } from "./controller/report/reportController";
 
 import { routes } from "./routes";
 import { CONSTANTS } from "./config/server";
 import { client } from "./controller/mainController";
 
 import { errorMiddleware } from "./middlewares/error";
-import { createInitialOrganization } from "./controller/organizationController";
+import { createInitialOrganization } from "./controller/organization/organizationController";
+import { loadSchedulesReportActives } from "./controller/schedule_report/loadSchedulesActive";
 
 const app = express();
 
 //listenAlert();
+loadSchedulesActives();
 createInitialOrganization();
-
+loadSchedulesReportActives();
+/*
 schedule.scheduleJob({ hour: 9, minute: 0, dayOfWeek: 6 }, async () => {
   await reportTriggerWeekly();
 });
-
+*/
 app.use(cors({
     origin: "*",
     allowedHeaders: "*",
