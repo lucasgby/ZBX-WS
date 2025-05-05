@@ -13,9 +13,9 @@ export function ControllerLogin() {
 
   const navigation = useRouter();
 
-  async function handleSignIn({ login, password }: LoginSchema) {
+  function handleSignIn({ login, password }: LoginSchema) {
     try {
-      await signIn({ login, password })
+      //await signIn({ login, password })
 
       navigation.push('/home');
 
