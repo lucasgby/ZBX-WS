@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.3.4",
+    "@hookform/resolvers": "^3.4.0",
     "@nextui-org/react": "^2.2.10",
     "@react-icons/all-files": "^4.1.0",
     "@react-stately/data": "^3.11.2",

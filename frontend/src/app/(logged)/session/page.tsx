@@ -3,9 +3,6 @@
 import { IoLogoWhatsapp } from "@react-icons/all-files/io/IoLogoWhatsapp";
 import { MdPhoneIphone } from "@react-icons/all-files/md/MdPhoneIphone";
 
-import { useConnectController } from "@/controller/connect"
-import { QrCode } from "./components/qrcode";
-
 import styles from "./styles.module.css";
 
 export default function Session() {

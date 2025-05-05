@@ -1,7 +1,5 @@
 import { NotificationType, toasty } from "@/components";
 import { LoginState } from "@/controller/state/loginState"
-import { alertError } from "@/functions/alertError";
-import { useLogin } from "@/hooks/useLogin";
 import { useSchemaValidade } from "@/hooks/useSchemaValidade";
 import { LoginSchema, loginSchema } from "@/model/formShema/loginSchema";
 import { signIn } from "@/service/fetch/login";

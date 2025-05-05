@@ -10,7 +10,6 @@ interface Props {
 }
 
 function useSchemaValidade<T extends FieldValues>({ schemaYup }: Props) {
-
   //@ts-ignore
   const methods = useForm<T, any>({ resolver: yupResolver(schemaYup) });
 
